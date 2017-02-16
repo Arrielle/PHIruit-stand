@@ -23,15 +23,16 @@ $(document).ready(function(){
 	var averageApplePrice = 0;
 	var appleTotalSpent = 0;
 	var numApplesBought = 0;
-
+		Math.round(averageApplePrice);
 	$('#apple').on('click', 'button', function(){ // button click event listener
 		var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 		userCash -= priceAtMoment; //subtracting fruit price from total cash
 		$('#userCash').text(userCash); // updating user cash on DOM;
 		numApplesBought++;
 		appleTotalSpent+=priceAtMoment;
-		averageApplePrice = appleTotalSpent/numApplesBought;
+		averageApplePrice = Math.round(appleTotalSpent/numApplesBought*100)/100;
 		isUserALoser();
+
 		$(this).parent().find('h4').find('span').text(averageApplePrice);
 
 		$('#numApplesBought').text('You bought ' + numApplesBought  + ' apple(s)!')
