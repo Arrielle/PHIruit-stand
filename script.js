@@ -23,11 +23,10 @@ $(document).ready(function(){
 	var averageApplePrice = 0;
 	var appleTotalSpent = 0;
 	var numApplesBought = 0;
-		Math.round(averageApplePrice);
 	$('#apple').on('click', 'button', function(){ // button click event listener
 		var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 		userCash -= priceAtMoment; //subtracting fruit price from total cash
-		$('#userCash').text(userCash); // updating user cash on DOM;
+		$('#userCash').text(Math.round(userCash*100)/100); // updating user cash on DOM;
 		numApplesBought++;
 		appleTotalSpent+=priceAtMoment;
 		averageApplePrice = Math.round(appleTotalSpent/numApplesBought*100)/100;
@@ -46,11 +45,12 @@ $(document).ready(function(){
 	$('#orange').on('click', 'button', function(){ // button click event listener
 		var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 		userCash -= priceAtMoment; //subtracting fruit price from total cash
-		$('#userCash').text(userCash); // updating user cash on DOM
+		$('#userCash').text(Math.round(userCash*100)/100); // updating user cash on DOM
 
 		numOrangeBought++;
 		orangeTotalSpent+=priceAtMoment;
 		averageOrangePrice = orangeTotalSpent/numOrangeBought;
+		averageOrangePrice = Math.round(orangeTotalSpent/numOrangeBought*100)/100;
 		isUserALoser();
 		$(this).parent().find('h4').find('span').text(averageOrangePrice);
 
@@ -65,11 +65,12 @@ $(document).ready(function(){
 	$('#banana').on('click', 'button', function(){ // button click event listener
 		var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 		userCash -= priceAtMoment; //subtracting fruit price from total cash
-		$('#userCash').text(userCash); // updating user cash on DOM
+		$('#userCash').text(Math.round(userCash*100)/100); // updating user cash on DOM
 
 		numBananaBought++;
 		bananaTotalSpent+=priceAtMoment;
 		averageBananaPrice = bananaTotalSpent/numBananaBought;
+		averageBananaPrice = Math.round(bananaTotalSpent/numBananaBought*100)/100;
 		isUserALoser();
 		$(this).parent().find('h4').find('span').text(averageOrangePrice);
 
@@ -84,11 +85,12 @@ $(document).ready(function(){
 $('#pear').on('click', 'button', function(){ // button click event listener
 	var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 	userCash -= priceAtMoment; //subtracting fruit price from total cash
-	$('#userCash').text(userCash); // updating user cash on DOM
+	$('#userCash').text(Math.round(userCash*100)/100); 
 
 	numPearBought++;
 	pearTotalSpent+=priceAtMoment;
 	averagePearPrice = pearTotalSpent/numPearBought;
+	averagePearPrice = Math.round(pearTotalSpent/numPearBought*100)/100;
 	isUserALoser();
 	$(this).parent().find('h4').find('span').text(averagePearPrice);
 
