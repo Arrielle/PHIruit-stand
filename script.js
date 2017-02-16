@@ -4,21 +4,45 @@ $(document).ready(function(){
 
 	//for loop to append button to each fruit div on the DOM
 	for (var i = 0; i < fruitDivArray.length; i++) {
-		$('#' + fruitDivArray[i]).append('<button class="buyButton" id="' + fruitDivArray[i] + '" > I want buy ' + fruitDivArray[i] + ' </button>');
+		$('#' + fruitDivArray[i]).append('<button class="buyButton" id="' + fruitDivArray[i] + '" >Buy ' + fruitDivArray[i] + ' </button>');
 	}
 	// variables declared for random number operations
 	var centIncrement = randomNumber(1, 50);
 	var plusOrMinus = randomNumber(0, 1);
 	var newMarketPrice = randomNumber(1,9);
-	// console.log(newMarketPrice);
 
-newRandomMarketPrice();
+	var userCash = 100; // defines starting user cash
 
-setInterval(newRandomMarketPrice, 1500); //sets price to refresh every 15 seconds
+	$('#userCash').text(userCash); // adding user cash new amount to DOM by changing text
+
+newRandomMarketPrice(); // calling RandomMarketPrice function
+
+setInterval(newRandomMarketPrice, 15000); //sets price to refresh every 15 seconds
+
+
+var averageApplePrice = 0;
+var appleTotalSpent = 0;
+var numApplesBought = 0;
+
+$('button').on('click', function(){ // button click event listener
+	var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
+	userCash -= priceAtMoment; //subtracting fruit price from total cash
+	$('#userCash').text(userCash); // updating user cash on DOM
+
+	numApplesBought++;
+	appleTotalSpent+=priceAtMoment;
+
+	averageApplePrice = appleTotalSpent/numApplesBought;
+
+	console.log(averageApplePrice);
+
+});
+
+
 
 	// function for parameters of new random market price to avoid errors
 	function randomMarketPrice () {
-		newMarketPrice = randomNumber(1,9);
+		// newMarketPrice = randomNumber(1,9);
 		centIncrement = randomNumber(1,50);
 		if (newMarketPrice <= 0.5) {
 			newMarketPrice += centIncrement/100;
@@ -40,7 +64,7 @@ setInterval(newRandomMarketPrice, 1500); //sets price to refresh every 15 second
 			newMarketPrice *= 100;
 			Math.round(newMarketPrice);
 			newMarketPrice = parseInt(newMarketPrice)/100;
-			$('#' + fruitDivArray[i]).find('h3').text("New Market Price: $" + newMarketPrice);
+			$('#' + fruitDivArray[i]).find('h3').find('span').text(newMarketPrice);
 		}
 	}
 
