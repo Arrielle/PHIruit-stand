@@ -1,10 +1,20 @@
 $(document).ready(function(){
 
 	var fruitDivArray = ['apple', 'orange', 'banana', 'pear']; //created array of client fruit
+	// var fruitObjectsArraygit = [{name: , price:, spent:, bought:}];
+
+	function Phiruit(inName, inNumBought, inPrice, inAvgPrice) {
+		this.name = inName;
+		this.numBought = inNumBought;
+		this.price = inPrice;
+		this.avgPrice = inAvgPrice;
+	}
 
 	//for loop to append button to each fruit div on the DOM
 	for (var i = 0; i < fruitDivArray.length; i++) {
 		$('#' + fruitDivArray[i]).append('<button class="buyButton" id="' + fruitDivArray[i] + '" >Buy ' + fruitDivArray[i] + ' </button>');
+		//new fruit goes here
+		//need data to reference back to the fruit
 	}
 	// variables declared for random number operations
 	var centIncrement = randomNumber(1, 50);
@@ -72,7 +82,7 @@ $(document).ready(function(){
 		averageBananaPrice = bananaTotalSpent/numBananaBought;
 		averageBananaPrice = Math.round(bananaTotalSpent/numBananaBought*100)/100;
 		isUserALoser();
-		$(this).parent().find('h4').find('span').text(averageOrangePrice);
+		$(this).parent().find('h4').find('span').text(averageBananaPrice);
 
 		$('#numBananaBought').text('You bought ' + numBananaBought  + ' banana(s)!')
 
@@ -85,7 +95,7 @@ $(document).ready(function(){
 $('#pear').on('click', 'button', function(){ // button click event listener
 	var priceAtMoment = parseFloat($(this).parent().find('h3').find('span').text());
 	userCash -= priceAtMoment; //subtracting fruit price from total cash
-	$('#userCash').text(Math.round(userCash*100)/100); 
+	$('#userCash').text(Math.round(userCash*100)/100);
 
 	numPearBought++;
 	pearTotalSpent+=priceAtMoment;
